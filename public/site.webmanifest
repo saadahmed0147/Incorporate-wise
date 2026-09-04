@@ -1,0 +1,17 @@
+{
+  "name": "Incorporate Wise",
+  "short_name": "Incorporate Wise",
+  "description": "US company formation and business support.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f6f6f6",
+  "theme_color": "#2563eb",
+  "icons": [
+    {
+      "src": "/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}

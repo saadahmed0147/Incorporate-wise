@@ -2,6 +2,9 @@ import { NextRequest, NextResponse } from "next/server";
 import { contactSchema } from "@/lib/contact-schema";
 import { sendContactEmail } from "@/lib/mailer";
 
+export const runtime = "nodejs";
+export const dynamic = "force-dynamic";
+
 const attempts = new Map<string, { count: number; resetAt: number }>();
 
 function rateLimited(key: string) {

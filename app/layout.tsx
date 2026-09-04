@@ -9,6 +9,12 @@ export const metadata: Metadata = {
   },
   description:
     "Form and manage your US company from anywhere with Incorporate Wise.",
+  applicationName: "Incorporate Wise",
+  manifest: "/site.webmanifest",
+  icons: {
+    icon: [{ url: "/icon.svg", type: "image/svg+xml" }],
+    shortcut: "/icon.svg",
+  },
 };
 
 export const viewport: Viewport = { themeColor: "#2563eb" };

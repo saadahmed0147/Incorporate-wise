@@ -1,5 +1,8 @@
 import { NextResponse } from "next/server";
 
+export const runtime = "nodejs";
+export const dynamic = "force-dynamic";
+
 export function GET(request: Request) {
   const raw = process.env.MEETING_URL;
   try {
