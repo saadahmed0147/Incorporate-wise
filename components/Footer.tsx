@@ -11,7 +11,7 @@ export function Footer() {
         {navGroups.map(group => <nav key={group.label} aria-label={group.label}><h3>{group.label}</h3>{group.items.map(item => <Link key={item.href} href={item.href}>{item.label}</Link>)}</nav>)}
       </div>
       <div className="watermark" aria-hidden="true">incorporatewise</div>
-      <div className="footer-brand-row"><Logo/><div className="trust-badges"><span className="badge-seal">✓ Verified Filing Partner</span><span className="badge-product">● Business Services</span></div><div className="languages"><button>English</button><button>العربية (Arabic)</button><button>Türkçe (Turkish)</button></div></div>
+      <div className="footer-brand-row"><Logo/><div className="trust-badges"><span className="badge-seal">✓ Verified Filing Partner</span><span className="badge-product">● Business Services</span></div></div>
     </div>
     <div className="footer-lower page-frame">
       <div className="legal-row"><p>© 2026 Incorporate Wise. All rights reserved</p><div>{legalLinks.map(([label,href], index) => <span className="legal-pair" key={href}><Link href={href}>{label}</Link>{index < legalLinks.length - 1 && <i>·</i>}</span>)}</div></div>
