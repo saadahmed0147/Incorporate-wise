@@ -1,0 +1,7 @@
+export const faqItems = [
+  ["Can I form a company if I am not a US citizen or resident?", "Definitely! So far we have helped more than 20,000 companies for founders in over 170 countries - and you could be next. Specific requirements may apply depending on your country of residence, chosen state, and business structure, and we are always here to guide you along the way."],
+  ["What information do I need to provide to get started?", "No documents are needed upfront. We take you through a short form to collect your new company's details, and Incorporate Wise handles every step from there. After your company is formed, you'll need a passport to open a bank account, in line with KYC requirements."],
+  ["How long does the company formation process take?", "Formation typically takes between 1 and 5 business days, depending on the state you choose and your business structure. Expedited options may be available for an additional state fee."],
+  ["What is a registered agent, and why do I need one?", "A registered agent is a designated individual or entity responsible for receiving and forwarding legal documents and correspondence on behalf of your company. Most states require one to keep your business compliant with state regulations."],
+  ["Can Incorporate Wise help me after my company is formed?", "Of course. Incorporate Wise supports your business after formation with bank account applications, post-incorporation filings, yearly bookkeeping and tax assistance, plus access to exclusive SaaS deals."],
+] as const;

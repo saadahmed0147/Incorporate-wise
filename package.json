@@ -1,0 +1,29 @@
+{
+  "name": "incorporate-wise",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint .",
+    "audit:links": "node scripts/audit-links.mjs"
+  },
+  "dependencies": {
+    "next": "latest",
+    "nodemailer": "latest",
+    "react": "latest",
+    "react-dom": "latest",
+    "zod": "latest"
+  },
+  "devDependencies": {
+    "@types/node": "latest",
+    "@types/nodemailer": "latest",
+    "@types/react": "latest",
+    "@types/react-dom": "latest",
+    "cheerio": "latest",
+    "eslint": "latest",
+    "eslint-config-next": "latest",
+    "typescript": "latest"
+  }
+}

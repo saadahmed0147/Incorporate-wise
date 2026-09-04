@@ -1,0 +1,31 @@
+import { NextRequest, NextResponse } from "next/server";
+import { contactSchema } from "@/lib/contact-schema";
+import { sendContactEmail } from "@/lib/mailer";
+
+const attempts = new Map<string, { count: number; resetAt: number }>();
+
+function rateLimited(key: string) {
+  const now = Date.now();
+  const item = attempts.get(key);
+  if (!item || item.resetAt < now) { attempts.set(key, { count: 1, resetAt: now + 10 * 60_000 }); return false; }
+  item.count += 1;
+  return item.count > 5;
+}
+
+export async function POST(request: NextRequest) {
+  const ip = request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() || "unknown";
+  if (rateLimited(ip)) return NextResponse.json({ message: "Too many attempts. Please try again shortly." }, { status: 429 });
+
+  try {
+    const json = await request.json();
+    const result = contactSchema.safeParse(json);
+    if (!result.success) return NextResponse.json({ message: "Please check the highlighted information.", errors: result.error.flatten().fieldErrors }, { status: 400 });
+    if (result.data.website) return NextResponse.json({ ok: true });
+    await sendContactEmail(result.data);
+    return NextResponse.json({ ok: true, message: "Thanks — your message has been sent." });
+  } catch (error) {
+    const configMissing = error instanceof Error && error.message === "MAIL_CONFIG_MISSING";
+    console.error("Contact submission failed", { configMissing });
+    return NextResponse.json({ message: configMissing ? "Email delivery is not configured yet. Please try again later." : "We couldn't send your message. Please try again." }, { status: 500 });
+  }
+}
