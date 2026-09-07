@@ -4,9 +4,12 @@ export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
 export function GET(request: Request) {
-  const raw = process.env.MEETING_URL;
+  const configured = process.env.MEETING_URL?.trim();
   try {
-    const url = new URL(raw || "");
+    const normalized = configured && !/^https?:\/\//i.test(configured)
+      ? `https://${configured}`
+      : configured;
+    const url = new URL(normalized || "");
     if (url.protocol !== "https:") throw new Error("Invalid protocol");
     return NextResponse.redirect(url, 307);
   } catch {

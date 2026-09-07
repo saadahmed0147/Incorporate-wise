@@ -27,8 +27,9 @@ export async function POST(request: NextRequest) {
     await sendContactEmail(result.data);
     return NextResponse.json({ ok: true, message: "Thanks — your message has been sent." });
   } catch (error) {
-    const configMissing = error instanceof Error && error.message === "MAIL_CONFIG_MISSING";
-    console.error("Contact submission failed", { configMissing });
-    return NextResponse.json({ message: configMissing ? "Email delivery is not configured yet. Please try again later." : "We couldn't send your message. Please try again." }, { status: 500 });
+    const code = error instanceof Error ? error.message : "UNKNOWN";
+    const configurationError = code === "MAIL_CONFIG_MISSING" || code === "MAIL_CONFIG_INVALID";
+    console.error("Contact submission failed", { code });
+    return NextResponse.json({ message: configurationError ? "Email delivery is not configured yet. Please contact us directly." : "We couldn't send your message right now. Please wait a moment and try again." }, { status: 500 });
   }
 }
